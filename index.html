@@ -12,170 +12,152 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-html {
-    scroll-behavior: smooth;
-}
+/* Base styles */
+html { scroll-behavior: smooth; }
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background:#0f172a; color:#fff; line-height:1.6; }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    background: #0f172a;
-    color: #ffffff;
-    line-height: 1.6;
-}
-
+/* Header */
 header {
-    padding: 20px 10%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    background: #0f172a;
-    z-index: 1000;
+    padding:20px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    background:#0f172a;
+    z-index:1000;
 }
+header img { height:40px; }
 
-header h1 {
-    font-size: 22px;
-    font-weight: 700;
+/* Nav */
+nav { display:flex; gap:20px; }
+nav a { color:#fff; text-decoration:none; font-size:14px; transition:0.3s; }
+nav a:hover { color:#2563eb; }
+
+/* Hamburger */
+.hamburger {
+    display:none; flex-direction:column; cursor:pointer; gap:5px; z-index:1100;
 }
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 14px;
-    transition: 0.3s;
+.hamburger div {
+    width:25px; height:3px; background:#fff; border-radius:2px; transition:all 0.4s ease;
 }
+.hamburger.open div:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+.hamburger.open div:nth-child(2) { opacity:0; }
+.hamburger.open div:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
 
-nav a:hover {
-    color: #2563eb;
-}
-
-.hero {
-    padding: 120px 10%;
-    text-align: center;
-}
-
-.hero h2 {
-    font-size: 44px;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 18px;
-    margin-bottom: 30px;
-    color: #cbd5e1;
-}
-
+/* Hero */
+.hero { padding:120px 10%; text-align:center; }
+.hero h2 { font-size:44px; margin-bottom:20px; }
+.hero p { font-size:18px; margin-bottom:30px; color:#cbd5e1; }
 .btn {
-    display: inline-block;
-    padding: 14px 35px;
-    background: #2563eb;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: 0.3s;
+    display:inline-block; padding:14px 35px; background:#2563eb; color:#fff;
+    text-decoration:none; border-radius:6px; font-weight:600; transition:0.3s;
 }
+.btn:hover { background:#1d4ed8; }
 
-.btn:hover {
-    background: #1d4ed8;
-}
+/* Business description */
+.business-description { text-align:center; padding:50px 10%; }
+.business-description h3 { font-size:28px; margin-bottom:20px; }
+.business-description p { font-size:16px; color:#cbd5e1; max-width:700px; margin:0 auto; }
 
-section {
-    padding: 100px 10%;
-}
-
-.section-title {
-    font-size: 32px;
-    margin-bottom: 50px;
-    text-align: center;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
+/* Sections */
+section { padding:100px 10%; }
+.section-title { font-size:32px; margin-bottom:50px; text-align:center; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:30px; }
 .card {
-    background: #1e293b;
-    padding: 30px;
-    border-radius: 12px;
-    transition: 0.4s;
-    opacity: 0;
-    transform: translateY(40px);
+    background:#1e293b; padding:30px; border-radius:12px; transition:0.4s;
+    opacity:0; transform:translateY(40px);
 }
+.card.show { opacity:1; transform:translateY(0); }
+.card:hover { transform:translateY(-8px); }
+.card h3 { margin-bottom:15px; }
+.card p { color:#cbd5e1; font-size:14px; }
+.price { font-size:24px; font-weight:700; margin:15px 0; }
+.portfolio img { width:100%; border-radius:8px; margin-bottom:15px; }
 
-.card.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* Footer */
+footer { text-align:center; padding:30px; background:#1e293b; margin-top:50px; font-size:14px; color:#cbd5e1; }
 
-.card:hover {
-    transform: translateY(-8px);
-}
-
-.card h3 {
-    margin-bottom: 15px;
-}
-
-.card p {
-    color: #cbd5e1;
-    font-size: 14px;
-}
-
-.price {
-    font-size: 24px;
-    font-weight: 700;
-    margin: 15px 0;
-}
-
-.portfolio img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-footer {
-    text-align: center;
-    padding: 30px;
-    background: #1e293b;
-    margin-top: 50px;
-    font-size: 14px;
-    color: #cbd5e1;
-}
-
+/* Floating WhatsApp */
 .whatsapp {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25d366;
-    color: white;
-    padding: 15px 18px;
-    border-radius: 50%;
-    text-decoration: none;
-    font-weight: bold;
+    position:fixed; bottom:20px; right:20px; width:50px; height:50px;
+    border-radius:50%; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.3); z-index:1000;
 }
+.whatsapp img { width:100%; height:100%; display:block; }
+.whatsapp:hover { transform:scale(1.1); transition:0.3s; }
+
+/* Mobile Styles */
+@media (max-width:768px){
+    nav {
+        position: absolute;
+        top: 60px; /* below the header */
+        right: 10%;
+        display: flex;
+        flex-direction: column;
+        background: transparent; /* no background */
+        gap: 10px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    nav.active {
+        max-height: 200px; /* enough for 4 links */
+    }
+
+    nav a {
+        font-size: 18px;
+        color: #fff;
+        text-decoration: none;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    nav.active a {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    nav.active a:nth-child(1) { transition-delay:0.05s; }
+    nav.active a:nth-child(2) { transition-delay:0.1s; }
+    nav.active a:nth-child(3) { transition-delay:0.15s; }
+    nav.active a:nth-child(4) { transition-delay:0.2s; }
+
+    .hamburger { display:flex; }
+}
+
+    /* Animated menu links */
+    nav a {
+        font-size:20px; opacity:0; transform:translateY(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    nav.active a { opacity:1; transform:translateY(0); }
+    nav.active a:nth-child(1) { transition-delay:0.1s; }
+    nav.active a:nth-child(2) { transition-delay:0.2s; }
+    nav.active a:nth-child(3) { transition-delay:0.3s; }
+    nav.active a:nth-child(4) { transition-delay:0.4s; }
+
+    .whatsapp { width:60px; height:60px; }
+
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>Macos Web Studio</h1>
+    <img src="2.png" alt="Macos Web Studio">
+    <h3>Macos Web Studio</h3>
     <nav>
         <a href="#services">Services</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
     </nav>
+    <div class="hamburger" id="hamburger">
+        <div></div><div></div><div></div>
+    </div>
 </header>
 
 <section class="hero">
@@ -184,63 +166,41 @@ footer {
     <a href="#contact" class="btn">Start Your Project</a>
 </section>
 
+<section class="business-description">
+    <h3>Why Choose Macos Web Studio?</h3>
+    <p>
+        At Macos Web Studio, we specialize in designing fast, modern, and responsive websites for Ugandan businesses. 
+        Whether you run a small business, school, clinic, or startup, we craft websites that build trust, 
+        attract customers, and help your brand stand out online. 
+        Our websites are mobile-friendly, SEO-ready, and integrated with tools like WhatsApp for instant communication. 
+        We combine technical expertise with creativity to deliver results that grow your business.
+    </p>
+</section>
+
 <section id="services">
     <h2 class="section-title">Services</h2>
     <div class="grid">
-        <div class="card">
-            <h3>Business Websites</h3>
-            <p>Professional responsive websites for small and medium businesses.</p>
-        </div>
-        <div class="card">
-            <h3>School & Clinic Websites</h3>
-            <p>Information portals with contact forms, maps and structured content.</p>
-        </div>
-        <div class="card">
-            <h3>Website Redesign</h3>
-            <p>Transform outdated websites into modern high-performance platforms.</p>
-        </div>
+        <div class="card"><h3>Business Websites</h3><p>Professional responsive websites for small and medium businesses.</p></div>
+        <div class="card"><h3>School & Clinic Websites</h3><p>Information portals with contact forms, maps and structured content.</p></div>
+        <div class="card"><h3>Website Redesign</h3><p>Transform outdated websites into modern high-performance platforms.</p></div>
     </div>
 </section>
 
 <section id="portfolio">
     <h2 class="section-title">Portfolio</h2>
     <div class="grid portfolio">
-        <div class="card">
-            <img src="https://via.placeholder.com/400x250" alt="">
-            <h3>Hotel Website Demo</h3>
-            <p>Responsive hotel website with booking section.</p>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/400x250" alt="">
-            <h3>School Website Demo</h3>
-            <p>Clean school information portal design.</p>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/400x250" alt="">
-            <h3>Business Landing Page</h3>
-            <p>Modern small business marketing site.</p>
-        </div>
+        <div class="card"><img src="https://via.placeholder.com/400x250" alt=""><h3>Hotel Website Demo</h3><p>Responsive hotel website with booking section.</p></div>
+        <div class="card"><img src="https://via.placeholder.com/400x250" alt=""><h3>School Website Demo</h3><p>Clean school information portal design.</p></div>
+        <div class="card"><img src="https://via.placeholder.com/400x250" alt=""><h3>Business Landing Page</h3><p>Modern small business marketing site.</p></div>
     </div>
 </section>
 
 <section id="pricing">
     <h2 class="section-title">Pricing</h2>
     <div class="grid">
-        <div class="card">
-            <h3>Starter</h3>
-            <div class="price">UGX 300,000</div>
-            <p>✔ 5 Pages<br>✔ Mobile Friendly<br>✔ Contact Form<br>✔ WhatsApp Button</p>
-        </div>
-        <div class="card">
-            <h3>Business</h3>
-            <div class="price">UGX 600,000</div>
-            <p>✔ 8–10 Pages<br>✔ SEO Setup<br>✔ Domain Setup<br>✔ Google Indexing</p>
-        </div>
-        <div class="card">
-            <h3>Premium</h3>
-            <div class="price">UGX 1,000,000+</div>
-            <p>✔ Booking System<br>✔ Payment Integration<br>✔ Admin Panel<br>✔ 3 Months Support</p>
-        </div>
+        <div class="card"><h3>Starter</h3><div class="price">UGX 300,000</div><p>✔ 5 Pages<br>✔ Mobile Friendly<br>✔ Contact Form<br>✔ WhatsApp Button</p></div>
+        <div class="card"><h3>Business</h3><div class="price">UGX 600,000</div><p>✔ 8–10 Pages<br>✔ SEO Setup<br>✔ Domain Setup<br>✔ Google Indexing</p></div>
+        <div class="card"><h3>Premium</h3><div class="price">UGX 1,000,000+</div><p>✔ Booking System<br>✔ Payment Integration<br>✔ Admin Panel<br>✔ 3 Months Support</p></div>
     </div>
 </section>
 
@@ -256,22 +216,35 @@ footer {
     © 2026 Macos Web Studio | All Rights Reserved
 </footer>
 
-<a href="https://wa.link/6nqn6h" class="whatsapp">W</a>
+<a href="https://wa.me/256753419538?text=Hello%2C%20I%20visited%20your%20website%20and%20I%20am%20interested%20in%20building%20a%20website%20for%20my%20business.%20Please%20share%20the%20next%20steps." class="whatsapp">
+    <img src="whatsapp.png" alt="WhatsApp">
+</a>
 
 <script>
-// Scroll Reveal Animation
+// Scroll Reveal Animation for cards
 const cards = document.querySelectorAll('.card');
-
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add('show');
-        }
+        if(entry.isIntersecting){ entry.target.classList.add('show'); }
     });
 }, { threshold: 0.2 });
+cards.forEach(card => observer.observe(card));
 
-cards.forEach(card => {
-    observer.observe(card);
+// Hamburger Menu + Auto-Close Links
+const hamburger = document.getElementById('hamburger');
+const nav = document.querySelector('header nav');
+const navLinks = document.querySelectorAll('header nav a');
+
+hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    hamburger.classList.toggle('open');
+});
+
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        hamburger.classList.remove('open');
+    });
 });
 </script>
 
