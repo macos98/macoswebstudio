@@ -47,7 +47,45 @@ nav a:hover { color:#2563eb; }
 .hamburger.open div:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
 
 /* Hero */
-.hero { padding:120px 10%; text-align:center; }
+.hero {
+    position:relative;
+    padding:120px 10%;
+    text-align:center;
+    overflow:hidden;
+}
+.hero canvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
+.hero-content { position:relative; z-index:1; }
+
+/* Floating hero animation */
+@keyframes floatText {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+.hero-content h2, .hero-content p, .hero-content .btn {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+.hero-content.visible h2 {
+    opacity:1;
+    transform: translateY(0);
+    transition-delay:0.2s;
+    animation: floatText 3s ease-in-out infinite;
+}
+.hero-content.visible p {
+    opacity:1;
+    transform: translateY(0);
+    transition-delay:0.4s;
+    animation: floatText 3s ease-in-out infinite 0.5s;
+}
+.hero-content.visible .btn {
+    opacity:1;
+    transform: translateY(0);
+    transition-delay:0.6s;
+    animation: floatText 3s ease-in-out infinite 1s;
+}
+
 .hero h2 { font-size:44px; margin-bottom:20px; }
 .hero p { font-size:18px; margin-bottom:30px; color:#cbd5e1; }
 .btn {
@@ -118,7 +156,6 @@ footer { text-align:center; padding:30px; background:#1e293b; margin-top:50px; f
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -136,9 +173,12 @@ footer { text-align:center; padding:30px; background:#1e293b; margin-top:50px; f
 </header>
 
 <section class="hero">
-    <h2>Professional Websites for Ugandan Businesses</h2>
-    <p>I design clean, fast and modern websites that help businesses build trust and attract more customers.</p>
-    <a href="#contact" class="btn">Start Your Project</a>
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-content">
+        <h2>Professional Websites for Ugandan Businesses</h2>
+        <p>I design clean, fast and modern websites that help businesses build trust and attract more customers.</p>
+        <a href="#contact" class="btn">Start Your Project</a>
+    </div>
 </section>
 
 <section class="business-description">
@@ -191,12 +231,12 @@ footer { text-align:center; padding:30px; background:#1e293b; margin-top:50px; f
     © 2026 Macos Web Studio | All Rights Reserved
 </footer>
 
-<a href="https://wa.me/256753419538?text=Hello%2C%20I%20visited%20your%20website%20and%20I%20am%20interested%20in%20building%20a%20website%20for%20my%20business.%20Please%20share%20the%20next%20steps." class="whatsapp">
+<a href="https://wa.me/256773730940" class="whatsapp">
     <img src="whatsapp.png" alt="WhatsApp">
 </a>
 
 <script>
-// Scroll Reveal Animation for cards
+// Scroll Reveal for cards
 const cards = document.querySelectorAll('.card');
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -205,7 +245,7 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.2 });
 cards.forEach(card => observer.observe(card));
 
-// Hamburger Menu + Auto-Close Links
+// Hamburger Menu
 const hamburger = document.getElementById('hamburger');
 const nav = document.querySelector('header nav');
 const navLinks = document.querySelectorAll('header nav a');
@@ -214,12 +254,56 @@ hamburger.addEventListener('click', () => {
     nav.classList.toggle('active');
     hamburger.classList.toggle('open');
 });
-
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         nav.classList.remove('active');
         hamburger.classList.remove('open');
     });
+});
+
+// Hero text animation
+window.addEventListener('load', () => {
+    const heroContent = document.querySelector('.hero-content');
+    heroContent.classList.add('visible');
+});
+
+// Particle background
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+for(let i=0;i<100;i++){
+    particles.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        radius: Math.random()*2+1,
+        dx: (Math.random()-0.5)*1,
+        dy: (Math.random()-0.5)*1
+    });
+}
+
+function animateParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+        p.x += p.dx;
+        p.y += p.dy;
+        if(p.x<0||p.x>canvas.width) p.dx*=-1;
+        if(p.y<0||p.y>canvas.height) p.dy*=-1;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+        ctx.fillStyle = '#2563eb';
+        ctx.fill();
+    });
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// Adjust canvas on resize
+window.addEventListener('resize',()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 });
 </script>
 
