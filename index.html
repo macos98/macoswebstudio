@@ -30,7 +30,7 @@ header {
 }
 header img { height:40px; }
 
-/* Nav */
+/* Nav - Desktop */
 nav { display:flex; gap:20px; }
 nav a { color:#fff; text-decoration:none; font-size:14px; transition:0.3s; }
 nav a:hover { color:#2563eb; }
@@ -90,57 +90,32 @@ footer { text-align:center; padding:30px; background:#1e293b; margin-top:50px; f
 /* Mobile Styles */
 @media (max-width:768px){
     nav {
-        position: absolute;
-        top: 60px; /* below the header */
-        right: 10%;
-        display: flex;
-        flex-direction: column;
-        background: transparent; /* no background */
-        gap: 10px;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
+        position:absolute;
+        top:60px;
+        right:10%;
+        flex-direction:column;
+        gap:10px;
+        max-height:0;
+        overflow:hidden;
+        transition:max-height 0.3s ease;
     }
-
-    nav.active {
-        max-height: 200px; /* enough for 4 links */
-    }
-
+    nav.active { max-height:200px; }
     nav a {
-        font-size: 18px;
-        color: #fff;
-        text-decoration: none;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        font-size:18px;
+        opacity:0;
+        transform:translateY(-10px);
+        transition:opacity 0.3s ease, transform 0.3s ease;
     }
-
     nav.active a {
-        opacity: 1;
-        transform: translateY(0);
+        opacity:1;
+        transform:translateY(0);
     }
-
     nav.active a:nth-child(1) { transition-delay:0.05s; }
     nav.active a:nth-child(2) { transition-delay:0.1s; }
     nav.active a:nth-child(3) { transition-delay:0.15s; }
     nav.active a:nth-child(4) { transition-delay:0.2s; }
-
     .hamburger { display:flex; }
 }
-
-    /* Animated menu links */
-    nav a {
-        font-size:20px; opacity:0; transform:translateY(-20px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    nav.active a { opacity:1; transform:translateY(0); }
-    nav.active a:nth-child(1) { transition-delay:0.1s; }
-    nav.active a:nth-child(2) { transition-delay:0.2s; }
-    nav.active a:nth-child(3) { transition-delay:0.3s; }
-    nav.active a:nth-child(4) { transition-delay:0.4s; }
-
-    .whatsapp { width:60px; height:60px; }
-
 </style>
 </head>
 
